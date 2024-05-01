@@ -1,0 +1,35 @@
+.sendForm {
+  margin-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textarea {
+  background: rgb(245, 247, 251);
+  width: 976px;
+
+  padding: 11px 0 12px 24px;
+  border: none;
+  border-radius: 20px;
+  resize: none;
+}
+
+.button {
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgb(0, 102, 204);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+.button:active {
+  background-color: #fff;
+}

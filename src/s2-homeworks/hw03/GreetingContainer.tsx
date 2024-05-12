@@ -51,12 +51,12 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   const [name, setName] = useState<string>(""); // need to fix any
   const [error, setError] = useState<string>(""); // need to fix any
   const [lastUserName, setLastUserName] = useState<string>(""); // need to
+  console.log(error);
 
   const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
     // need to fix any
     setName(e.currentTarget.value); // need to fix
-
-    error && setError("");
+    setError("");
   };
   const addUser = () => {
     pureAddUser(name, setError, setName, addUserCallback);

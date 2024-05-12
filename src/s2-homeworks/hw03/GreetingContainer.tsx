@@ -50,6 +50,8 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   // деструктуризация пропсов
   const [name, setName] = useState<string>(""); // need to fix any
   const [error, setError] = useState<string>(""); // need to fix any
+  const [lastUserName, setLastUserName] = useState<string>(""); // need to
+  console.log(lastUserName);
 
   const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => {
     // need to fix any
@@ -59,6 +61,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   };
   const addUser = () => {
     pureAddUser(name, setError, setName, addUserCallback);
+    setLastUserName(name);
   };
 
   const onBlur = () => {
@@ -70,7 +73,6 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
   };
 
   const totalUsers = users.length; // need to fix
-  const lastUserName = name; // need to fix
 
   return (
     <Greeting

@@ -8,7 +8,6 @@
   border-radius: 3px;
   border: none;
   color: rgb(255, 255, 255);
-  background: rgb(0, 102, 204);
 }
 
 .disabled {
@@ -23,11 +22,15 @@
   background: rgb(255, 255, 255);
 }
 
+.default {
+  background: rgb(0, 102, 204);
+}
+
 .red {
   background: rgb(204, 20, 57);
 }
 
-.button:hover {
+.default:hover {
   background: rgb(0, 128, 255);
 }
 
@@ -40,7 +43,7 @@
   background: rgb(229, 240, 250);
 }
 
-.button:active {
+.default:active {
   background: rgb(0, 89, 179);
 }
 

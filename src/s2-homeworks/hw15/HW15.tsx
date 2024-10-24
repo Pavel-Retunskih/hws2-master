@@ -42,7 +42,7 @@ const HW15 = () => {
   const [sort, setSort] = useState("");
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(4);
-  const [idLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(100);
   const [searchParams, setSearchParams] = useSearchParams();
   const [techs, setTechs] = useState<TechType[]>([]);
@@ -72,19 +72,18 @@ const HW15 = () => {
   const onChangeSort = (newSort: string) => {
     setTechs([]);
     setSort((prevSort) => (prevSort = newSort));
-    setPage(1); // при сортировке сбрасывать на 1 страницу
-
-    setSearchParams({ page: `${page}`, count: `${count}`, sort: newSort });
+    setPage(1);
+    let params = Object.fromEntries(searchParams);
+    setSearchParams({ ...params, sort: newSort });
     //
   };
-  console.log(searchParams);
+
   useEffect(() => {
     const params = Object.fromEntries(searchParams);
-    console.log(params);
-    sendQuery({ page: params.page, count: params.count, sort: params.sort });
+    sendQuery(searchParams);
     setPage(+params.page || 1);
     setCount(+params.count || 4);
-  }, [page, count, sort]);
+  }, [page, sort, count]);
 
   const mappedTechs = techs.map((t) => (
     <div key={t.id} className={s.row}>
@@ -103,7 +102,7 @@ const HW15 = () => {
       <div className={s2.hwTitle}>Homework #15</div>
 
       <div className={s2.hw}>
-        {idLoading && (
+        {isLoading && (
           <div id={"hw15-loading"} className={s.loading}>
             Loading...
           </div>

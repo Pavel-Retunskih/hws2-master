@@ -52,38 +52,36 @@ const HW15 = () => {
     getTechs(params)
       .then((res) => {
         if (res) {
-          console.log(res.data);
           setTechs(res.data.techs);
           setTotalCount(res.data.totalCount);
         }
       })
-      .catch((e) => {
-        console.log(e);
-      })
+      .catch((e) => {})
       .finally(() => {
         setLoading(false);
       });
   };
 
   const onChangePagination = (newPage: number, newCount: number) => {
-    setPage(newPage);
-    setCount(newCount);
-    setSearchParams({ page: `${newPage}`, count: `${newCount}` });
+    setTechs([]);
+    setPage((prev) => (prev = newPage));
+    setCount((prev) => (prev = newCount));
+    setSearchParams({ page: `${newPage}`, count: `${newCount}`, sort: sort });
   };
 
   const onChangeSort = (newSort: string) => {
-    // setSort(
+    setTechs([]);
+    setSort((prevSort) => (prevSort = newSort));
     setPage(1); // при сортировке сбрасывать на 1 страницу
-    // sendQuery(
-    // setSearchParams(
+
+    setSearchParams({ page: `${page}`, count: `${count}`, sort: newSort });
     //
   };
-
+  console.log(searchParams);
   useEffect(() => {
     const params = Object.fromEntries(searchParams);
     console.log(params);
-
-    sendQuery({ page: params.page, count: params.count });
+    sendQuery({ page: params.page, count: params.count, sort: params.sort });
     setPage(+params.page || 1);
     setCount(+params.count || 4);
   }, [page, count, sort]);

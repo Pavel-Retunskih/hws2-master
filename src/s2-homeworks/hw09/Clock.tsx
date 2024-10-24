@@ -6,9 +6,10 @@ import s from "./Clock.module.css";
 function Clock() {
   const [timerId, setTimerId] = useState<number | undefined>(undefined);
   // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
-  const [date, setDate] = useState<Date>(new Date(restoreState("hw9-date", Date.now())));
+  const [date, setDate] = useState<Date>(
+    new Date(restoreState("hw9-date", Date.now()))
+  );
   const [show, setShow] = useState<boolean>(false);
-  console.log(timerId);
 
   const start = () => {
     let timerId = setInterval(() => {
@@ -34,8 +35,16 @@ function Clock() {
     // пишут студенты // спрятать дату если мышка не наведена
   };
 
-  const stringTime = date.toLocaleString("ru", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) || <br />; // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-  const stringDate = date.toLocaleString("ru", { day: "2-digit", month: "2-digit", year: "numeric" }) || <br />; // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+  const stringTime = date.toLocaleString("ru", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }) || <br />; // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
+  const stringDate = date.toLocaleString("ru", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }) || <br />; // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
   // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
   const stringDay = date.toLocaleString("en", { weekday: "long" }) || <br />; // пишут студенты
@@ -43,7 +52,12 @@ function Clock() {
 
   return (
     <div className={s.clock}>
-      <div id={"hw9-watch"} className={s.watch} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <div
+        id={"hw9-watch"}
+        className={s.watch}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
         <span id={"hw9-day"}>{stringDay}</span>,{" "}
         <span id={"hw9-time"}>
           <strong>{stringTime}</strong>
@@ -54,7 +68,8 @@ function Clock() {
         <div className={s.more}>
           {show ? (
             <>
-              <span id={"hw9-month"}>{stringMonth}</span>, <span id={"hw9-date"}>{stringDate}</span>
+              <span id={"hw9-month"}>{stringMonth}</span>,{" "}
+              <span id={"hw9-date"}>{stringDate}</span>
             </>
           ) : (
             <>

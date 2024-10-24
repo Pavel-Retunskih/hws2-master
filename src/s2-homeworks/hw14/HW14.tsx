@@ -30,14 +30,12 @@ const HW14 = () => {
   const [isLoading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [techs, setTechs] = useState<string[]>([]);
-  console.log(searchParams);
 
   const sendQuery = (value: string) => {
     setLoading(true);
     getTechs(value)
       .then((res) => {
         if (res) {
-          console.log(res.data.techs);
           setTechs(res.data.techs);
         }
       })
